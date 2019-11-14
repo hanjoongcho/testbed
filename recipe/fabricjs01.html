@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<!-- Scripts -->
+<script src="../lib/fabric.js/3.5.0/fabric.js"></script>
+<script src="commons.js"></script>
+<script src="utils.js"></script>
+<style type="text/css">
+    .canvas-container {
+        display: inline-block;
+        float: left;
+    }
+    #canvas {
+        border: solid black 1px;
+        display: inline-block;
+    }
+    #tools {
+        display: inline-block;
+        /* border: solid black 1px; */
+        margin-left: 20px;
+        width: 300px;
+        height: 300px;
+       
+    }
+</style>
+
+</head>
+<body>
+    <a href="../index.html">목록</a><br>
+    <div>
+	    <canvas id="canvas" width="500" height="500"></canvas>
+	    <div id="tools">
+	       <hr>
+	       <h3>Add feature</h3>
+	       <button onclick="addRect();">addReact</button>
+	       <button onclick="addCircle();">addCircle</button>
+	       <button onclick="addTriangle();">addTriangle</button>
+	       <hr>
+	       <h3>Add Text</h3>
+	       <button onclick="addTextbox();">addTextbox</button>
+	       <hr>
+	       <h3>Add Image</h3>
+	       <input type="file" id="imgLoader"/>
+	       <hr>
+	       <h3>Selected Object Info</h3>
+	       <span id="objInfo"></span>
+	       <hr>
+	    </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var canvas = new fabric.Canvas('canvas');
+    
+    document.getElementById('imgLoader').onchange = function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var imgObj = new Image();
+            imgObj.src = event.target.result;
+            imgObj.onload = function() {
+                objCount++;
+                var image = new fabric.Image(imgObj);
+                var scaleX = (canvas.width / imgObj.width) * 0.3;
+                var scaleY = (canvas.height / imgObj.height) * 0.3;
+                image.set({
+                    angle : 0,
+                    padding : 10,
+                    cornersize : 10,
+                    info: {id: 'image_' + objCount, attr1: '속성1', attr2: '속성2'}
+                }).scale(scaleX, scaleY);
+                canvas.centerObject(image);
+                canvas.add(image);
+                canvas.renderAll();
+            }
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+    
+    canvas.on('selection:created', function () {
+        document.getElementById('objInfo').innerHTML = JSON.stringify(canvas.getActiveObject().info);
+    });
+    canvas.on('selection:updated', function () {
+        document.getElementById('objInfo').innerHTML = JSON.stringify(canvas.getActiveObject().info);
+    });
+    
+</script>
+</html>
