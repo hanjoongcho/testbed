@@ -5,7 +5,7 @@
 <title></title>
 
 <!-- Scripts -->
-<script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
+<script src="../lib/ckeditor/4.13.0_standard/ckeditor.js"></script>
 </head>
 <body>
 <a href="../index">목록</a>
@@ -14,7 +14,7 @@
 <textarea name="editor1"></textarea>
 <script type="text/javascript">
     var config = {};
-    config.plugins =
+    /* config.plugins =
         'about,' +
         'a11yhelp,' +
         'basicstyles,' +
@@ -75,7 +75,8 @@
         'toolbar,' +
         'undo,' +
         'uploadimage,' +
-        'wysiwygarea';
+        'wysiwygarea'; */
+    
     config.toolbarGroups = [
         { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
@@ -90,7 +91,13 @@
         { name: 'styles'}
     ];
 
-
+    // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+    config.filebrowserBrowseUrl = '/apps/ckfinder/3.4.5/ckfinder.html'
+    config.filebrowserImageBrowseUrl = '/apps/ckfinder/3.4.5/ckfinder.html?type=Images'
+    config.filebrowserUploadUrl = '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files'
+    config.filebrowserImageUploadUrl = '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    // https://user-images.githubusercontent.com/156149/47722540-ed367c00-dc52-11e8-97d4-b7eafbb6e495.png
+    config.extraPlugins = 'dragresize';
     CKEDITOR.replace( 'editor1', config );
 </script>
 </body>
