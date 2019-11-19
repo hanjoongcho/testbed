@@ -12,6 +12,7 @@
 <h1>sample01</h1><br/>
 <body>
 <textarea name="editor1"></textarea>
+<div id="preview">https://s.pstatic.net/static/www/mobile/edit/2019/1118/mobile_181023405706.jpg</div>
 <script type="text/javascript">
     var config = {
         height: 450,
@@ -47,7 +48,9 @@
             name : 'insert',
             groups : [ 'insert' ]
         }, '/', {
-            name : 'styles'
+            name: 'styles',
+        }, {
+            name: 'colors',
         } ],
         /* https://ckeditor.com/old/forums/CKEditor/Complete-list-of-toolbar-items#comment-123266 */
         removeButtons: 'Flash,HorizontalRule,Iframe', 
