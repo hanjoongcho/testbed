@@ -20,6 +20,7 @@
         /* filebrowserImageBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html?type=Images', */
         /* filebrowserUploadUrl: '/apps/ckfinder/3.4.5/core/connector/php/connector.php?command=QuickUpload&type=Files', */
         filebrowserImageUploadUrl: 'http://localhost:18080/upload/image',
+        imageUploadUrl: 'http://localhost:18080/upload/image',
         toolbarGroups: [ {
             name : 'document',
             groups : [ 'mode', 'document', 'doctools' ]
@@ -52,7 +53,8 @@
         /* removePlugins: 'resize', */
         extraPlugins: 'dragresize'
     };
-
+    //onfig.extraPlugins = 'uploadimage';
+    
     var editor = CKEDITOR.replace('editor1', config);
 
     // https://dev.ckeditor.com/ticket/8504
