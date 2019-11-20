@@ -52,7 +52,7 @@
     </div>
 </body>
 <script type="text/javascript">
-    var canvas = new fabric.Canvas('canvas');
+    var canvas = new fabric.Canvas('canvas', { preserveObjectStacking:true });
     
     document.getElementById('imgLoader').onchange = function handleImage(e) {
         var reader = new FileReader();
